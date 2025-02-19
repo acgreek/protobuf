@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option go_package = "./sample";
+import "google/protobuf/any.proto";
+
+message SubMessage {
+  string name = 1;
+  int32  id = 2;
+}
+
+message TestMessage {
+	int64 numberVal = 1;
+	string stringVal = 2;
+  float floatNum = 3;
+  fixed32 fixed32Num = 4;
+  fixed64 fixed64Num = 5;
+  double doubleNum = 6;
+  SubMessage subMessage =7;
+  enum FOO {
+    UNKNOWN=0;
+    V1=1;
+  };
+  FOO enumValue = 8;
+	int32 number32Val = 9;
+	sint32 snumber32Val = 10;
+	sint64 snumber64Val = 11;
+	uint32 unumber32Val = 12; 
+	uint64 unumber64Val = 13;
+  sfixed32 sfixed32Num = 14;
+  sfixed64 sfixed64Num = 15;
+  bytes bytesVAl = 16;
+  repeated int32 unpacketInts = 17 [packed=false];
+  repeated uint32 packetInts = 18 [packed=true];
+  repeated SubMessage subMessages = 19;
+  repeated bytes repeatedBytes = 20;
+  repeated string repeatedString = 21;
+  repeated sfixed32 packedSfixed32 = 22 [packed=true];
+  int64 maxInt = 23;
+  int64 minInt = 24;
+  uint64 maxUInt = 25;
+  uint64 minUInt = 26;
+  map<string, FOO> mapVal = 27;
+  // repeated google.protobuf.Any details = 28;
+  oneof oneOfVal{
+   string oneOfString = 29;
+   int32 oneOfint = 30;
+  }
+}
+
+
+message UnknownFields {
+  int32 numberVal = 900;
+  string stringVal = 901;
+  message Nested {
+    string stringVal = 900; 
+  } ;
+  Nested nested = 7; 
+}
